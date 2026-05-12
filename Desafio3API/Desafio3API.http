@@ -1,0 +1,64 @@
+@Desafio3API_HostAddress = http://localhost:5055
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiR3VpZ28iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJndWlnb0BlbWFpbC5jb20iLCJleHAiOjE3NzgzODM1NDAsImlzcyI6IkRlc2FmaW8zQVBJIiwiYXVkIjoiRGVzYWZpbzNBUEkifQ.ikkWG9-2qQCqKUj4gj6yLRIM7brHMDXwEJrI9RT7iRYC
+### Listar tarefas com token
+GET {{Desafio3API_HostAddress}}/api/task
+Authorization: Bearer {{token}}
+
+### Listar usuários
+GET {{Desafio3API_HostAddress}}/api/user
+
+### Criar usuário
+POST {{Desafio3API_HostAddress}}/api/user
+Content-Type: application/json
+
+{
+  "name": "Guigo",
+  "email": "guigo@email.com",
+  "password": "123456"
+}
+
+### Listar tarefas
+GET {{Desafio3API_HostAddress}}/api/task
+
+### Criar tarefa
+POST {{Desafio3API_HostAddress}}/api/task
+Content-Type: application/json
+
+{
+  "title": "Estudar ASP.NET Core",
+  "description": "Criar endpoints REST usando Controller e Entity Framework",
+  "isCompleted": false
+}
+
+### Criar usuário inválido
+POST {{Desafio3API_HostAddress}}/api/user
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "emailerrado",
+  "password": "123"
+}
+
+### Criar usuário com email duplicado
+POST {{Desafio3API_HostAddress}}/api/user
+Content-Type: application/json
+
+{
+  "name": "Outro Guigo",
+  "email": "guigo@email.com",
+  "password": "123456"
+}
+
+### Login
+POST {{Desafio3API_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "guigo@email.com",
+  "password": "123456"
+}
+
+### Listar tarefas sem token
+GET {{Desafio3API_HostAddress}}/api/task
