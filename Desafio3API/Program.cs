@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Desafio3API.Models;
+using System.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -93,6 +95,22 @@ builder.Services.AddSwaggerGen(options =>
 
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    if (!context.Users.Any(u => u.Email == "root@root.com"))
+    {
+        context.Users.Add(new User
+        {
+            Name = "root",
+            Email = "root@root.com",
+            Password = "cimatec"
+        });
+
+        context.SaveChanges();
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {
